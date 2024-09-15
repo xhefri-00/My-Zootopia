@@ -7,12 +7,6 @@ def load_data(file_path):
 
 animals_data = load_data('animals_data.json')
 
-import json
-
-# Load the data from the animals_data.json file
-with open('animals_data.json', 'r') as file:
-    animals_data = json.load(file)
-
 # Iterate through each animal and print the required information
 for animal in animals_data:
     name = animal.get('name')
