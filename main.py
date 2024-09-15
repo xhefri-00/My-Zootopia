@@ -33,6 +33,7 @@ def load_template():
     """for loading data from html file"""
     with open('animals_template.html', 'r') as file:
         html_template = file.read()
+        return html_template
 
 
 def string_creation_data(animals_data):
@@ -49,8 +50,10 @@ def string_creation_data(animals_data):
 
 def replace_animals_info(html_data, string_data_animals):
     replaced_data = html_data.replace('__REPLACE_ANIMALS_INFO__', string_data_animals)
-
     print(replaced_data)
+
+    with open('edited_animals.html', 'w') as file:
+        html_template = file.write(replaced_data)
 
 
 def main():
