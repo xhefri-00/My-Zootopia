@@ -36,18 +36,26 @@ def load_template():
         return html_template
 
 
+def serialize_animal(animal_obj):
+    """Serializes a single animal object into HTML"""
+    output = '<li class="cards__item">\n'
+    output += f"<div class='card__title'>Name: {animal_obj['name']}</div><br/>\n"
+    output += f"Diet: {animal_obj['characteristics']['diet']}<br/>\n"
+    output += f"First location: {animal_obj['locations'][0]}<br/>\n"
+
+    animal_type = animal_obj['characteristics'].get('type')
+    if animal_type:
+        output += f"Type: {animal_type}<br/>\n"
+
+    output += '</li>\n'
+    return output
+
+
 def string_creation_data(animals_data):
+    """Creates an HTML string for all animals"""
     output = ""
     for animal in animals_data:
-        """append information to each string"""
-        output += '<li class="cards__item">'
-        output += f"Name: {animal['name']}<br/>\n"
-        output += f"Diet: {animal['characteristics']['diet']}<br/>\n"
-        output += f"First location: {animal['locations'][0]}<br/>\n"
-        animal_type = animal['characteristics'].get('type')
-        if animal_type:
-            output += f"Type: {animal['characteristics']['type']}<br/>\n"
-    output += '</liv'
+        output += serialize_animal(animal)
     return output
 
 def replace_animals_info(html_data, string_data_animals):
