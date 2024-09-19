@@ -39,13 +39,15 @@ def load_template():
 def string_creation_data(animals_data):
     output = ""
     for animal in animals_data:
-    # append information to each string
-        output += f"Name: {animal['name']}\n"
-        output += f"Diet: {animal['characteristics']['diet']}\n"
-        output += f"First location: {animal['locations'][0]}\n"
+        """append information to each string"""
+        output += '<li class="cards__item">'
+        output += f"Name: {animal['name']}<br/>\n"
+        output += f"Diet: {animal['characteristics']['diet']}<br/>\n"
+        output += f"First location: {animal['locations'][0]}<br/>\n"
         animal_type = animal['characteristics'].get('type')
         if animal_type:
-            output += f"Type: {animal['characteristics']['type']}\n"
+            output += f"Type: {animal['characteristics']['type']}<br/>\n"
+    output += '</liv'
     return output
 
 def replace_animals_info(html_data, string_data_animals):
