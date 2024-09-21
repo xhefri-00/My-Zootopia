@@ -13,12 +13,10 @@ def iterating_data(animals_data):
         characteristics = animal.get('characteristics', {})
         locations = animal.get('locations', [])
 
-        # Retrieve fields if they exist
+        """Retrieve & print fields if they exist"""
         diet = characteristics.get('diet')
         animal_type = characteristics.get('type')
         first_location = locations[0] if locations else None
-
-        # Print the details if they exist
         if name:
             print(f"\nName: {name}")
         if diet:
