@@ -13,12 +13,10 @@ def iterating_data(animals_data):
         characteristics = animal.get('characteristics', {})
         locations = animal.get('locations', [])
 
-        # Retrieve fields if they exist
+        """Retrieve & print fields if they exist"""
         diet = characteristics.get('diet')
         animal_type = characteristics.get('type')
         first_location = locations[0] if locations else None
-
-        # Print the details if they exist
         if name:
             print(f"\nName: {name}")
         if diet:
@@ -44,7 +42,7 @@ def serialize_animal(animal_obj):
     output += f"First Location: {animal_obj['locations'][0]}<br/>\n"
     habitat = animal_obj['characteristics'].get('habitat')
     if habitat and len(habitat) > 0:
-        output += f"Habitat: {habitat[:]}<br/>\n"  # Using the first habitat if there are multiple
+        output += f"Habitat: {habitat[:]}<br/>\n"
 
     lifespan = animal_obj['characteristics'].get('lifespan')
     if lifespan:
@@ -72,6 +70,7 @@ def string_creation_data(animals_data):
     for animal in animals_data:
         output += serialize_animal(animal)
     return output
+
 
 def replace_animals_info(html_data, string_data_animals):
     replaced_data = html_data.replace('__REPLACE_ANIMALS_INFO__', string_data_animals)
