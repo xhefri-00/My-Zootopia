@@ -1,31 +1,4 @@
-import json
-
-def load_data(file_path):
-    """Loads a JSON file"""
-    with open(file_path, "r", encoding="utf-8") as handle:
-        return json.load(handle)
-
-
-def iterating_data(animals_data):
-    """Iterate through each animal and print the required information"""
-    for animal in animals_data:
-        name = animal.get('name')
-        characteristics = animal.get('characteristics', {})
-        locations = animal.get('locations', [])
-
-        """Retrieve & print fields if they exist"""
-        diet = characteristics.get('diet')
-        animal_type = characteristics.get('type')
-        first_location = locations[0] if locations else None
-        if name:
-            print(f"\nName: {name}")
-        if diet:
-            print(f"Diet: {diet}")
-        if first_location:
-            print(f"First location: {first_location}")
-        if animal_type:
-            print(f"Type: {animal_type}")
-
+import data_fetcher
 
 def load_template():
     """for loading data from html file"""
@@ -81,10 +54,14 @@ def replace_animals_info(html_data, string_data_animals):
 
 
 def main():
-    animals_data = load_data('animals_data.json')
-    html_data = load_template()
-    string_data_animals = string_creation_data(animals_data)
-    replace_animals_info(html_data, string_data_animals)
+    animal_name = input("Please enter an animal: ")
+    animals_data = data_fetcher.fetch_data(animal_name)
+    if animals_data:
+        html_data = load_template()
+        string_data_animals = string_creation_data(animals_data)
+        replace_animals_info(html_data, string_data_animals)
+    else:
+        print("Error! No data could be found. Please check input.")
 
 
 if __name__ == "__main__":
