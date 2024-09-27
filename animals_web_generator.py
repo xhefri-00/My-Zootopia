@@ -7,6 +7,7 @@ def load_template():
         html_template = file.read()
         return html_template
 
+
 def insert_space_before_capitals(text):
     """Inserts a space before each capital letter in the color strings."""
     return re.sub(r'(?<!^)(?=[A-Z])', ', ', text)
