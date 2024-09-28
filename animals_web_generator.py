@@ -1,10 +1,22 @@
 import data_fetcher
+import re
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv('API_KEY')
+print(api_key)
 
 def load_template():
     """for loading data from html file"""
     with open('animals_template.html', 'r', encoding="utf-8") as file:
         html_template = file.read()
         return html_template
+
+
+def insert_space_before_capitals(text):
+    """Inserts a space before each capital letter in the color strings."""
+    return re.sub(r'(?<!^)(?=[A-Z])', ', ', text)
 
 
 def serialize_animal(animal_obj):
@@ -15,15 +27,15 @@ def serialize_animal(animal_obj):
     output += f"First Location: {animal_obj['locations'][0]}<br/>\n"
     habitat = animal_obj['characteristics'].get('habitat')
     if habitat and len(habitat) > 0:
-        output += f"Habitat: {habitat[:]}<br/>\n"
+        output += f"Habitat: {habitat}<br/>\n"
 
     lifespan = animal_obj['characteristics'].get('lifespan')
     if lifespan:
-        output += f"Lifespan: {lifespan[:]}<br/>\n"
+        output += f"Lifespan: {lifespan}<br/>\n"
 
     common_name = animal_obj.get('common_name')
     if common_name:
-        output += f"Common Name: {common_name[:]}<br/>\n"
+        output += f"Common Name: {common_name}<br/>\n"
 
     animal_type = animal_obj['characteristics'].get('type')
     if animal_type:
@@ -31,7 +43,8 @@ def serialize_animal(animal_obj):
 
     color = animal_obj['characteristics'].get('color')
     if color:
-        output += f"Color: {color[:]}<br/>\n"
+        formatted_color = insert_space_before_capitals(color)
+        output += f"Color: {formatted_color}<br/>\n"
 
     output += '</li>\n'
     return output
