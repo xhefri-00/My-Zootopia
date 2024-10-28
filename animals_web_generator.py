@@ -1,10 +1,7 @@
 import data_fetcher
 import re
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-api_key = os.getenv('API_KEY')
+
 
 def load_template():
     """for loading data from html file"""
