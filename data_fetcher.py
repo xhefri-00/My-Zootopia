@@ -1,8 +1,11 @@
 import requests
+from dotenv import load_dotenv
+import os
 
 def fetch_data(animal_name):
     api_url = f'https://api.api-ninjas.com/v1/animals?name={animal_name}'
-    api_key = "mJhYs7Z+4LdRKUkKW4TT7A==z8iKL7GxYnmLK8yb"
+    load_dotenv()
+    api_key = os.getenv('API_KEY')
 
     try:
         response = requests.get(api_url, headers={'X-Api-Key': api_key})
