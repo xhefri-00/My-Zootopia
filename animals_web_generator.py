@@ -55,6 +55,19 @@ def string_creation_data(animals_data):
 
 
 def replace_animals_info(html_data, string_data_animals):
+    """
+        Replace a placeholder in HTML data with specific animal information and save the edited HTML.
+
+        This function takes HTML content and replaces a placeholder string with
+        formatted animal information. The result is then saved to a new HTML file.
+
+        Args:
+            html_data (str): The HTML content containing a placeholder.
+            string_data_animals (str): The animal data to replace the placeholder with.
+
+        Returns:
+            None
+        """
     replaced_data = html_data.replace('__REPLACE_ANIMALS_INFO__', string_data_animals)
     print(replaced_data)
 
@@ -63,6 +76,9 @@ def replace_animals_info(html_data, string_data_animals):
 
 
 def main():
+    """Main function to fetch animal data,
+    load HTML template, and replace placeholder with animal information.
+    """
     animal_name = input("Please enter an animal: ")
     animals_data = data_fetcher.fetch_data(animal_name)
     if animals_data:
